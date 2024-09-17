@@ -1,2 +1,2 @@
-import PullToRefresh from './components/pull-to-refresh';
+import PullToRefresh from "./components/pull-to-refresh";
 export default PullToRefresh;

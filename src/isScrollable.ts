@@ -1,12 +1,12 @@
-import { DIRECTION } from './types';
+import { DIRECTION } from "./types";
 
 function isOverflowScrollable(element: HTMLElement): boolean {
   const overflowType: string = getComputedStyle(element).overflowY;
-  if (element === document.scrollingElement && overflowType === 'visible') {
+  if (element === document.scrollingElement && overflowType === "visible") {
     return true;
   }
 
-  if (overflowType !== 'scroll' && overflowType !== 'auto') {
+  if (overflowType !== "scroll" && overflowType !== "auto") {
     return false;
   }
 
@@ -27,13 +27,16 @@ function isScrollable(element: HTMLElement, direction: DIRECTION): boolean {
     return element.scrollTop > 0;
   }
 
-  throw new Error('unsupported direction');
+  throw new Error("unsupported direction");
 }
 
 /**
  * Returns whether a given element or any of its ancestors (up to rootElement) is scrollable in a given direction.
  */
-export function isTreeScrollable(element: HTMLElement, direction: DIRECTION): boolean {
+export function isTreeScrollable(
+  element: HTMLElement,
+  direction: DIRECTION
+): boolean {
   if (isScrollable(element, direction)) {
     return true;
   }

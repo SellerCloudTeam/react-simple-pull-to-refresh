@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
-import './App.css';
-import PullToRefresh from './pull-to-refresh';
-import Commands from './commands/commands';
+import React, { useState } from "react";
+import "./App.css";
+import Commands from "./commands/commands";
+import PullToRefresh from "./pull-to-refresh";
 
 const DEFAULT_VALUES = {
   isPullable: true,
@@ -16,12 +16,24 @@ const App: React.FC = () => {
   // prettier-ignore
   const FAKE_LIST = ['foo','bar','baz','foo','foo','bar','baz','foo','foo','bar','baz','foo','foo','bar','baz'];
   const [list, setList] = useState<string[]>(FAKE_LIST);
-  const [isPullable, setIsPullable] = useState<boolean>(DEFAULT_VALUES.isPullable);
-  const [canFetchMore, setCanFetchMore] = useState<boolean>(DEFAULT_VALUES.canFetchMore);
-  const [fetchMoreThreshold, setFetchMoreThreshold] = useState<number>(DEFAULT_VALUES.fetchMoreThreshold);
-  const [pullDownThreshold, setPullDownThreshold] = useState<number>(DEFAULT_VALUES.pullDownThreshold);
-  const [maxPullDownDistance, setMaxPullDownDistance] = useState<number>(DEFAULT_VALUES.maxPullDownDistance);
-  const [resistance, setResistance] = useState<number>(DEFAULT_VALUES.resistance);
+  const [isPullable, setIsPullable] = useState<boolean>(
+    DEFAULT_VALUES.isPullable
+  );
+  const [canFetchMore, setCanFetchMore] = useState<boolean>(
+    DEFAULT_VALUES.canFetchMore
+  );
+  const [fetchMoreThreshold, setFetchMoreThreshold] = useState<number>(
+    DEFAULT_VALUES.fetchMoreThreshold
+  );
+  const [pullDownThreshold, setPullDownThreshold] = useState<number>(
+    DEFAULT_VALUES.pullDownThreshold
+  );
+  const [maxPullDownDistance, setMaxPullDownDistance] = useState<number>(
+    DEFAULT_VALUES.maxPullDownDistance
+  );
+  const [resistance, setResistance] = useState<number>(
+    DEFAULT_VALUES.resistance
+  );
 
   const handleReset = (): void => {
     setIsPullable(DEFAULT_VALUES.isPullable);
@@ -33,7 +45,7 @@ const App: React.FC = () => {
   };
 
   const getNewData = (): Promise<void> => {
-    return new Promise(res => {
+    return new Promise((res) => {
       setTimeout(() => {
         res(setList([...list, ...FAKE_LIST]));
       }, 1500);

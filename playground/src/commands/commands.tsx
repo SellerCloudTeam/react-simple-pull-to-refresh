@@ -1,5 +1,5 @@
-import React from 'react';
-import './commands.css';
+import React from "react";
+import "./commands.css";
 
 interface Props {
   canFetchMore: boolean;
@@ -34,32 +34,42 @@ const Commands = ({
 }: Props) => {
   return (
     <div className="commands">
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <div className="command__group">
           <button onClick={() => onReset()}>
             <code>Reset values</code>
           </button>
         </div>
         <div className="command__group">
-          <input type="checkbox" id="ptr" checked={isPullable} onChange={() => setIsPullable()} />
+          <input
+            type="checkbox"
+            id="ptr"
+            checked={isPullable}
+            onChange={() => setIsPullable()}
+          />
           <label htmlFor="ptr">
             <code>isPullable</code>
           </label>
         </div>
         <div className="command__group">
-          <input type="checkbox" id="fetchMore" checked={canFetchMore} onChange={() => setCanFetchMore()} />
+          <input
+            type="checkbox"
+            id="fetchMore"
+            checked={canFetchMore}
+            onChange={() => setCanFetchMore()}
+          />
           <label htmlFor="fetchMore">
             <code>canFetchMore</code>
           </label>
         </div>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
+      <div style={{ display: "flex", flexDirection: "column" }}>
         <div className="command__group">
           <input
             type="number"
             id="fetchMoreTreshold"
             value={fetchMoreThreshold}
-            onChange={e => setFetchMoreThreshold(e.target.value)}
+            onChange={(e) => setFetchMoreThreshold(e.target.value)}
           />
           <label htmlFor="fetchMoreTreshold">
             <code>fetchMoreTreshold</code>
@@ -70,7 +80,7 @@ const Commands = ({
             type="number"
             id="pullDownThreshold"
             value={pullDownThreshold}
-            onChange={e => setPullDownThreshold(e.target.value)}
+            onChange={(e) => setPullDownThreshold(e.target.value)}
           />
           <label htmlFor="pullDownThreshold">
             <code>pullDownThreshold</code>
@@ -81,7 +91,7 @@ const Commands = ({
             type="number"
             id="maxPullDownDistance"
             value={maxPullDownDistance}
-            onChange={e => setMaxPullDownDistance(e.target.value)}
+            onChange={(e) => setMaxPullDownDistance(e.target.value)}
           />
           <label htmlFor="maxPullDownDistance">
             <code>maxPullDownDistance</code>
@@ -92,7 +102,7 @@ const Commands = ({
             type="number"
             id="resistance"
             value={resistance}
-            onChange={e => setResistance(e.target.value)}
+            onChange={(e) => setResistance(e.target.value)}
           />
           <label htmlFor="maxPullDownDistance">
             <code>resistance</code>

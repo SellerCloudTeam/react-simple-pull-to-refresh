@@ -9,10 +9,10 @@ var DIRECTION;
 
 function isOverflowScrollable(element) {
     var overflowType = getComputedStyle(element).overflowY;
-    if (element === document.scrollingElement && overflowType === 'visible') {
+    if (element === document.scrollingElement && overflowType === "visible") {
         return true;
     }
-    if (overflowType !== 'scroll' && overflowType !== 'auto') {
+    if (overflowType !== "scroll" && overflowType !== "auto") {
         return false;
     }
     return true;
@@ -28,7 +28,7 @@ function isScrollable(element, direction) {
     if (direction === DIRECTION.UP) {
         return element.scrollTop > 0;
     }
-    throw new Error('unsupported direction');
+    throw new Error("unsupported direction");
 }
 /**
  * Returns whether a given element or any of its ancestors (up to rootElement) is scrollable in a given direction.
@@ -70,8 +70,16 @@ function styleInject(css, ref) {
   }
 }
 
-var css_248z = ".lds-ellipsis {\n  display: inline-block;\n  position: relative;\n  width: 64px;\n  height: 64px; }\n\n.lds-ellipsis div {\n  position: absolute;\n  top: 27px;\n  width: 11px;\n  height: 11px;\n  border-radius: 50%;\n  background: #363636;\n  animation-timing-function: cubic-bezier(0, 1, 1, 0); }\n\n.lds-ellipsis div:nth-child(1) {\n  left: 6px;\n  animation: lds-ellipsis1 0.6s infinite; }\n\n.lds-ellipsis div:nth-child(2) {\n  left: 6px;\n  animation: lds-ellipsis2 0.6s infinite; }\n\n.lds-ellipsis div:nth-child(3) {\n  left: 26px;\n  animation: lds-ellipsis2 0.6s infinite; }\n\n.lds-ellipsis div:nth-child(4) {\n  left: 45px;\n  animation: lds-ellipsis3 0.6s infinite; }\n\n@keyframes lds-ellipsis1 {\n  0% {\n    transform: scale(0); }\n  100% {\n    transform: scale(1); } }\n\n@keyframes lds-ellipsis3 {\n  0% {\n    transform: scale(1); }\n  100% {\n    transform: scale(0); } }\n\n@keyframes lds-ellipsis2 {\n  0% {\n    transform: translate(0, 0); }\n  100% {\n    transform: translate(19px, 0); } }\n";
+var css_248z = ".ptr,\r\n.ptr__children {\r\n  height: 100%;\r\n  width: 100%;\r\n  -webkit-overflow-scrolling: touch;\r\n  position: relative;\r\n}\r\n.ptr.ptr--fetch-more-treshold-breached .ptr__fetch-more {\r\n  display: block;\r\n}\r\n.ptr__fetch-more {\r\n  display: none;\r\n}\r\n/** * Pull down transition */\r\n.ptr__children,\r\n.ptr__pull-down {\r\n  transition: transform 0.2s cubic-bezier(0, 0, 0.31, 1);\r\n}\r\n.ptr__pull-down {\r\n  position: absolute;\r\n  overflow: hidden;\r\n  left: 0;\r\n  right: 0;\r\n  top: 0;\r\n  visibility: hidden;\r\n}\r\n.ptr__pull-down > div {\r\n  display: none;\r\n}\r\n.ptr--dragging {\r\n  /** * Hide PullMore content is treshold breached */\r\n  /** * Otherwize, display content */\r\n}\r\n.ptr--dragging.ptr--pull-down-treshold-breached .ptr__pull-down--pull-more {\r\n  display: none;\r\n}\r\n.ptr--dragging .ptr__pull-down--pull-more {\r\n  display: block;\r\n}\r\n.ptr--pull-down-treshold-breached {\r\n  /** * Force opacity to 1 is pull down trashold breached */\r\n  /** * And display loader */\r\n}\r\n.ptr--pull-down-treshold-breached .ptr__pull-down {\r\n  opacity: 1 !important;\r\n}\r\n.ptr--pull-down-treshold-breached .ptr__pull-down--loading {\r\n  display: block;\r\n}\r\n.ptr__loader {\r\n  margin: 0 auto;\r\n  text-align: center;\r\n}\r\n";
 styleInject(css_248z);
+
+var PullingContent = function () {
+    return (React.createElement("div", null,
+        React.createElement("p", null, "\u21A7\u00A0\u00A0pull to refresh\u00A0\u00A0\u21A7")));
+};
+
+var css_248z$1 = ".lds-ellipsis {\r\n  display: inline-block;\r\n  position: relative;\r\n  width: 64px;\r\n  height: 64px;\r\n}\r\n.lds-ellipsis div {\r\n  position: absolute;\r\n  top: 27px;\r\n  width: 11px;\r\n  height: 11px;\r\n  border-radius: 50%;\r\n  background: #363636;\r\n  animation-timing-function: cubic-bezier(0, 1, 1, 0);\r\n}\r\n.lds-ellipsis div:nth-child(1) {\r\n  left: 6px;\r\n  animation: lds-ellipsis1 0.6s infinite;\r\n}\r\n.lds-ellipsis div:nth-child(2) {\r\n  left: 6px;\r\n  animation: lds-ellipsis2 0.6s infinite;\r\n}\r\n.lds-ellipsis div:nth-child(3) {\r\n  left: 26px;\r\n  animation: lds-ellipsis2 0.6s infinite;\r\n}\r\n.lds-ellipsis div:nth-child(4) {\r\n  left: 45px;\r\n  animation: lds-ellipsis3 0.6s infinite;\r\n}\r\n@keyframes lds-ellipsis1 {\r\n  0% {\r\n    transform: scale(0);\r\n }\r\n  100% {\r\n    transform: scale(1);\r\n }\r\n}\r\n@keyframes lds-ellipsis3 {\r\n  0% {\r\n    transform: scale(1);\r\n }\r\n  100% {\r\n    transform: scale(0);\r\n }\r\n}\r\n@keyframes lds-ellipsis2 {\r\n  0% {\r\n    transform: translate(0, 0);\r\n }\r\n  100% {\r\n    transform: translate(19px, 0);\r\n }\r\n}\r\n";
+styleInject(css_248z$1);
 
 // Source: https://loading.io/css/
 var RefreshingContent = function () {
@@ -82,18 +90,10 @@ var RefreshingContent = function () {
         React.createElement("div", null)));
 };
 
-var PullingContent = function () {
-    return (React.createElement("div", null,
-        React.createElement("p", null, "\u21A7\u00A0\u00A0pull to refresh\u00A0\u00A0\u21A7")));
-};
-
-var css_248z$1 = ".ptr,\n.ptr__children {\n  height: 100%;\n  width: 100%;\n  -webkit-overflow-scrolling: touch;\n  position: relative; }\n\n.ptr.ptr--fetch-more-treshold-breached .ptr__fetch-more {\n  display: block; }\n\n.ptr__fetch-more {\n  display: none; }\n\n/**\r\n  * Pull down transition \r\n  */\n.ptr__children,\n.ptr__pull-down {\n  transition: transform 0.2s cubic-bezier(0, 0, 0.31, 1); }\n\n.ptr__pull-down {\n  position: absolute;\n  overflow: hidden;\n  left: 0;\n  right: 0;\n  top: 0;\n  visibility: hidden; }\n  .ptr__pull-down > div {\n    display: none; }\n\n.ptr--dragging {\n  /**\r\n    * Hide PullMore content is treshold breached\r\n    */\n  /**\r\n    * Otherwize, display content\r\n    */ }\n  .ptr--dragging.ptr--pull-down-treshold-breached .ptr__pull-down--pull-more {\n    display: none; }\n  .ptr--dragging .ptr__pull-down--pull-more {\n    display: block; }\n\n.ptr--pull-down-treshold-breached {\n  /**\r\n    * Force opacity to 1 is pull down trashold breached\r\n    */\n  /**\r\n    * And display loader\r\n    */ }\n  .ptr--pull-down-treshold-breached .ptr__pull-down {\n    opacity: 1 !important; }\n  .ptr--pull-down-treshold-breached .ptr__pull-down--loading {\n    display: block; }\n\n.ptr__loader {\n  margin: 0 auto;\n  text-align: center; }\n";
-styleInject(css_248z$1);
-
 var PullToRefresh = function (_a) {
     var _b = _a.isPullable, isPullable = _b === void 0 ? true : _b, _c = _a.canFetchMore, canFetchMore = _c === void 0 ? false : _c, onRefresh = _a.onRefresh, onFetchMore = _a.onFetchMore, _d = _a.refreshingContent, refreshingContent = _d === void 0 ? React.createElement(RefreshingContent, null) : _d, _e = _a.pullingContent, pullingContent = _e === void 0 ? React.createElement(PullingContent, null) : _e, children = _a.children, _f = _a.pullDownThreshold, pullDownThreshold = _f === void 0 ? 67 : _f, _g = _a.fetchMoreThreshold, fetchMoreThreshold = _g === void 0 ? 100 : _g, _h = _a.maxPullDownDistance, maxPullDownDistance = _h === void 0 ? 95 : _h, // max distance to scroll to trigger refresh
     _j = _a.resistance, // max distance to scroll to trigger refresh
-    resistance = _j === void 0 ? 1 : _j, backgroundColor = _a.backgroundColor, _k = _a.className, className = _k === void 0 ? '' : _k;
+    resistance = _j === void 0 ? 1 : _j, backgroundColor = _a.backgroundColor, _k = _a.className, className = _k === void 0 ? "" : _k;
     var containerRef = useRef(null);
     var childrenRef = useRef(null);
     var pullDownRef = useRef(null);
@@ -107,23 +107,23 @@ var PullToRefresh = function (_a) {
         if (!isPullable || !childrenRef || !childrenRef.current)
             return;
         var childrenEl = childrenRef.current;
-        childrenEl.addEventListener('touchstart', onTouchStart, { passive: true });
-        childrenEl.addEventListener('mousedown', onTouchStart);
-        childrenEl.addEventListener('touchmove', onTouchMove, { passive: false });
-        childrenEl.addEventListener('mousemove', onTouchMove);
-        window.addEventListener('scroll', onScroll);
-        childrenEl.addEventListener('touchend', onEnd);
-        childrenEl.addEventListener('mouseup', onEnd);
-        document.body.addEventListener('mouseleave', onEnd);
+        childrenEl.addEventListener("touchstart", onTouchStart, { passive: true });
+        childrenEl.addEventListener("mousedown", onTouchStart);
+        childrenEl.addEventListener("touchmove", onTouchMove, { passive: false });
+        childrenEl.addEventListener("mousemove", onTouchMove);
+        window.addEventListener("scroll", onScroll);
+        childrenEl.addEventListener("touchend", onEnd);
+        childrenEl.addEventListener("mouseup", onEnd);
+        document.body.addEventListener("mouseleave", onEnd);
         return function () {
-            childrenEl.removeEventListener('touchstart', onTouchStart);
-            childrenEl.removeEventListener('mousedown', onTouchStart);
-            childrenEl.removeEventListener('touchmove', onTouchMove);
-            childrenEl.removeEventListener('mousemove', onTouchMove);
-            window.removeEventListener('scroll', onScroll);
-            childrenEl.removeEventListener('touchend', onEnd);
-            childrenEl.removeEventListener('mouseup', onEnd);
-            document.body.removeEventListener('mouseleave', onEnd);
+            childrenEl.removeEventListener("touchstart", onTouchStart);
+            childrenEl.removeEventListener("mousedown", onTouchStart);
+            childrenEl.removeEventListener("touchmove", onTouchMove);
+            childrenEl.removeEventListener("mousemove", onTouchMove);
+            window.removeEventListener("scroll", onScroll);
+            childrenEl.removeEventListener("touchend", onEnd);
+            childrenEl.removeEventListener("mouseup", onEnd);
+            document.body.removeEventListener("mouseleave", onEnd);
         };
     }, [
         children,
@@ -145,14 +145,16 @@ var PullToRefresh = function (_a) {
          */
         if (!((_a = containerRef) === null || _a === void 0 ? void 0 : _a.current))
             return;
-        var isAlreadyFetchingMore = containerRef.current.classList.contains('ptr--fetch-more-treshold-breached');
+        var isAlreadyFetchingMore = containerRef.current.classList.contains("ptr--fetch-more-treshold-breached");
         if (isAlreadyFetchingMore)
             return;
         /**
          * Proceed
          */
-        if (canFetchMore && getScrollToBottomValue() < fetchMoreThreshold && onFetchMore) {
-            containerRef.current.classList.add('ptr--fetch-more-treshold-breached');
+        if (canFetchMore &&
+            getScrollToBottomValue() < fetchMoreThreshold &&
+            onFetchMore) {
+            containerRef.current.classList.add("ptr--fetch-more-treshold-breached");
             fetchMoreTresholdBreached = true;
             onFetchMore().then(initContainer).catch(initContainer);
         }
@@ -173,17 +175,17 @@ var PullToRefresh = function (_a) {
              * Reset Styles
              */
             if (childrenRef.current) {
-                childrenRef.current.style.overflowX = 'initial';
-                childrenRef.current.style.overflowY = 'initial';
+                childrenRef.current.style.overflowX = "initial";
+                childrenRef.current.style.overflowY = "initial";
                 childrenRef.current.style.transform = "translate(0px, 0px)";
             }
             if (pullDownRef.current) {
-                pullDownRef.current.style.opacity = '0';
+                pullDownRef.current.style.opacity = "0";
             }
             if (containerRef.current) {
-                containerRef.current.classList.remove('ptr--pull-down-treshold-breached');
-                containerRef.current.classList.remove('ptr--dragging');
-                containerRef.current.classList.remove('ptr--fetch-more-treshold-breached');
+                containerRef.current.classList.remove("ptr--pull-down-treshold-breached");
+                containerRef.current.classList.remove("ptr--dragging");
+                containerRef.current.classList.remove("ptr--fetch-more-treshold-breached");
             }
             if (pullToRefreshThresholdBreached)
                 pullToRefreshThresholdBreached = false;
@@ -201,7 +203,8 @@ var PullToRefresh = function (_a) {
         }
         currentY = startY;
         // Check if element can be scrolled
-        if (e.type === 'touchstart' && isTreeScrollable(e.target, DIRECTION.UP)) {
+        if (e.type === "touchstart" &&
+            isTreeScrollable(e.target, DIRECTION.UP)) {
             return;
         }
         // Top non visible so cancel
@@ -220,7 +223,7 @@ var PullToRefresh = function (_a) {
         else {
             currentY = e.pageY;
         }
-        containerRef.current.classList.add('ptr--dragging');
+        containerRef.current.classList.add("ptr--dragging");
         if (currentY < startY) {
             isDragging = false;
             return;
@@ -233,17 +236,17 @@ var PullToRefresh = function (_a) {
         if (yDistanceMoved >= pullDownThreshold) {
             isDragging = true;
             pullToRefreshThresholdBreached = true;
-            containerRef.current.classList.remove('ptr--dragging');
-            containerRef.current.classList.add('ptr--pull-down-treshold-breached');
+            containerRef.current.classList.remove("ptr--dragging");
+            containerRef.current.classList.add("ptr--pull-down-treshold-breached");
         }
         // maxPullDownDistance breached, stop the animation
         if (yDistanceMoved >= maxPullDownDistance) {
             return;
         }
-        pullDownRef.current.style.opacity = ((yDistanceMoved) / 65).toString();
-        childrenRef.current.style.overflow = 'visible';
+        pullDownRef.current.style.opacity = (yDistanceMoved / 65).toString();
+        childrenRef.current.style.overflow = "visible";
         childrenRef.current.style.transform = "translate(0px, " + yDistanceMoved + "px)";
-        pullDownRef.current.style.visibility = 'visible';
+        pullDownRef.current.style.visibility = "visible";
     };
     var onScroll = function (e) {
         /**
@@ -254,9 +257,11 @@ var PullToRefresh = function (_a) {
         /**
          * Check if user breached fetchMoreThreshold
          */
-        if (canFetchMore && getScrollToBottomValue() < fetchMoreThreshold && onFetchMore) {
+        if (canFetchMore &&
+            getScrollToBottomValue() < fetchMoreThreshold &&
+            onFetchMore) {
             fetchMoreTresholdBreached = true;
-            containerRef.current.classList.add('ptr--fetch-more-treshold-breached');
+            containerRef.current.classList.add("ptr--fetch-more-treshold-breached");
             onFetchMore().then(initContainer).catch(initContainer);
         }
     };
@@ -267,12 +272,12 @@ var PullToRefresh = function (_a) {
         // Container has not been dragged enough, put it back to it's initial state
         if (!pullToRefreshThresholdBreached) {
             if (pullDownRef.current)
-                pullDownRef.current.style.visibility = 'hidden';
+                pullDownRef.current.style.visibility = "hidden";
             initContainer();
             return;
         }
         if (childrenRef.current) {
-            childrenRef.current.style.overflow = 'visible';
+            childrenRef.current.style.overflow = "visible";
             childrenRef.current.style.transform = "translate(0px, " + pullDownThreshold + "px)";
         }
         onRefresh().then(initContainer).catch(initContainer);
